@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,redirect,flash,make_response,session
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
@@ -7,6 +7,11 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/viewer')
+def viewer():
+    file = request.args.get('file')
+    print(file)
+    return render_template('viewer.html', file=file)
 
 #open any template
 @app.route('/<filename>')
